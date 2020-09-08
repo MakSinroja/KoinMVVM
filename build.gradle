@@ -58,6 +58,12 @@ buildscript {
 
             'gsonVersion'                 : '2.8.6',
 
+            'koinVersion'                 : '2.1.6',
+
+            'retrofitVersion'             : '2.8.1',
+
+            'okHttpVersion'               : '4.5.0',
+
             'junitVersion'                : '4.13',
             'junitExtVersion'             : '1.1.1',
             'runnerVersion'               : '1.2.0',
@@ -118,6 +124,27 @@ buildscript {
             'anko'            : "org.jetbrains.anko:anko-commons:${versions.ankoVersion}",
 
             'gson'            : "com.google.code.gson:gson:${versions.gsonVersion}",
+
+            'koin'            : [
+                    'core'       : "org.koin:koin-core:${versions.koinVersion}",
+                    'coreExt'    : "org.koin:koin-core-ext:${versions.koinVersion}",
+                    'scope'      : "org.koin:koin-androidx-scope:${versions.koinVersion}",
+                    'viewModel'  : "org.koin:koin-androidx-viewmodel:${versions.koinVersion}",
+                    'fragment'   : "org.koin:koin-androidx-fragment:${versions.koinVersion}",
+                    'androidXExt': "org.koin:koin-androidx-ext:${versions.koinVersion}"
+            ],
+
+            'retrofit'        : [
+                    'client'          : "com.squareup.retrofit2:retrofit:${versions.retrofitVersion}",
+                    'adapterRxJava2'  : "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofitVersion}",
+                    'converterGson'   : "com.squareup.retrofit2:converter-gson:${versions.retrofitVersion}",
+                    'converterScalars': "com.squareup.retrofit2:converter-scalars:${versions.retrofitVersion}",
+            ],
+
+            'okhttp'          : [
+                    'client' : "com.squareup.okhttp3:okhttp:${versions.okHttpVersion}",
+                    'logging': "com.squareup.okhttp3:logging-interceptor:${versions.okHttpVersion}",
+            ],
 
             'junit'           : "junit:junit:${versions.junitVersion}",
             'junitExt'        : "androidx.test.ext:junit:${versions.junitExtVersion}",

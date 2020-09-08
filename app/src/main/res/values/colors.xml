@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="mainAppColor">#1A2B5F</color>
+
+    <!-- AppTheme Light Colors -->
+    <color name="lightThemePrimaryColor">#1A2B5F</color>
+    <color name="lightThemeStatusBarColor">#14224c</color>
+    <color name="lightThemeScreenBackgroundColor">#F3F4F7</color>
+    <color name="lightThemeTextColor">#F5F6F8</color>
+
+    <!-- AppTheme Dark Colors -->
+    <color name="darkThemePrimaryColor">#1A2B5F</color>
+    <color name="darkThemeStatusBarColor">#14224c</color>
+    <color name="darkThemeScreenBackgroundColor">#F3F4F7</color>
+    <color name="darkThemeTextColor">#F5F6F8</color>
 </resources>

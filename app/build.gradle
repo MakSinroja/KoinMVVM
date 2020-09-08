@@ -68,17 +68,29 @@ android {
             }
         }
         main {
-            main.res.srcDirs = ['src/main/res']
+            res.srcDirs = [
+                    file('src/main/res/layouts').listFiles(),
+                    'src/main/res',
+            ]
         }
     }
 
     productFlavors {
+        def IP
         development {
+            IP = ""
+            buildConfigField "String", 'BASE_URL', "\"$IP/\""
+            buildConfigField "String", 'BASE_API_URL', "\"$IP/api/\""
+
             dimension "default"
             applicationIdSuffix ".development"
             resValue "string", "app_name", "$application_name - Development"
         }
         production {
+            IP = ""
+            buildConfigField "String", 'BASE_URL', "\"$IP/\""
+            buildConfigField "String", 'BASE_API_URL', "\"$IP/api/\""
+
             dimension "default"
             resValue "string", "app_name", application_name
         }
@@ -150,6 +162,24 @@ dependencies {
 
     // Gson Json Converter Library
     implementation libs.gson
+
+    // Koin Libraries
+    implementation libs.koin.core
+    implementation libs.koin.coreExt
+    implementation libs.koin.scope
+    implementation libs.koin.viewModel
+    implementation libs.koin.fragment
+    implementation libs.koin.androidXExt
+
+    // Retrofit Api Calling Libraries
+    implementation libs.retrofit.client
+    implementation libs.retrofit.adapterRxJava2
+    implementation libs.retrofit.converterGson
+    implementation libs.retrofit.converterScalars
+
+    // OkHttp Retrofit Dependency Libraries
+    implementation libs.okhttp.client
+    implementation libs.okhttp.logging
 
     // Test Implementation Libraries
     testImplementation libs.junit

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="themePrimaryColor" format="reference" />
+    <attr name="themeScreenBackgroundColor" format="reference" />
+    <attr name="themeStatusBarColor" format="reference" />
+    <attr name="themeTextColor" format="reference" />
+</resources>

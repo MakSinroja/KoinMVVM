@@ -1,10 +1,33 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">?themePrimaryColor</item>
+        <item name="colorPrimaryDark">?themePrimaryColor</item>
+        <item name="colorAccent">?themePrimaryColor</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="AppTheme.Light" parent="AppTheme">
+        <item name="themePrimaryColor">@color/lightThemePrimaryColor</item>
+        <item name="themeScreenBackgroundColor">@color/lightThemeScreenBackgroundColor</item>
+        <item name="themeTextColor">@color/lightThemeTextColor</item>
+
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+    </style>
+
+    <style name="AppTheme.Dark" parent="AppTheme">
+        <item name="themePrimaryColor">@color/darkThemePrimaryColor</item>
+        <item name="themeScreenBackgroundColor">@color/darkThemeScreenBackgroundColor</item>
+        <item name="themeTextColor">@color/darkThemeTextColor</item>
+
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
 </resources>
