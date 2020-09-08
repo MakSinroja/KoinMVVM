@@ -1,12 +1,136 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    ext.gradle_version = '4.0.1'
     ext.kotlin_version = "1.4.0"
+
+    ext.application_name = "KoinMVVM"
+    ext.application_id = "com.example.koinmvvm"
+
+    ext.build_config = [
+            'compileSdkVersion': 29,
+            'buildToolsVersion': "30.0.1",
+            'minSdkVersion'    : 23,
+            'targetSdkVersion' : 29,
+
+            'version'          : [
+                    'majorVersion': 1,
+                    'minorVersion': 0,
+                    'buildVersion': 0
+            ]
+    ]
+
+    ext.build_config.version['name'] = "${build_config.version.majorVersion}.${build_config.version.minorVersion}"
+    ext.build_config.version['code'] = build_config.version.majorVersion * 10000 + build_config.version.minorVersion * 100 + build_config.version.buildVersion
+
+    ext.versions = [
+            'multidexVersion'             : '2.0.1',
+
+            'android'                     : [
+                    'architecture': [
+                            'lifecycleVersion': '2.2.0',
+                            'rx'              : [
+                                    'rxJavaVersion'   : '2.2.10',
+                                    'rxAndroidVersion': '2.1.1',
+                                    'rxKotlinVersion' : '2.4.0',
+                            ],
+                            'roomVersion'     : '2.2.5',
+                    ],
+                    'support'     : [
+                            'appCompatVersion'   : '1.1.0',
+                            'ktxVersion'         : '1.3.0',
+                            'annotationVersion'  : '1.1.0',
+                            'coreVersion'        : '1.3.0',
+                            'recyclerViewVersion': '1.1.0',
+                            'cardViewVersion'    : '1.0.0',
+                            'materialVersion'    : '1.2.0-alpha05',
+                            'constraintVersion'  : '1.1.3',
+                    ]
+            ],
+
+            'permissionsDispatcherVersion': '4.7.0',
+
+            'timberVersion'               : '4.7.1',
+
+            'sspVersion'                  : '1.0.6',
+            'sdpVersion'                  : '1.0.6',
+
+            'ankoVersion'                 : '0.10.8',
+
+            'gsonVersion'                 : '2.8.6',
+
+            'junitVersion'                : '4.13',
+            'junitExtVersion'             : '1.1.1',
+            'runnerVersion'               : '1.2.0',
+            'espressoVersion'             : '3.2.0',
+    ]
+
+    ext.libs = [
+            'kotlin'          : [
+                    'stdLib': [
+                            'jdk': "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+                    ]
+            ],
+
+            'multidex'        : "androidx.multidex:multidex:${versions.multidexVersion}",
+
+            'android'         : [
+                    'architecture': [
+                            'lifecycle': [
+                                    'extensions': "androidx.lifecycle:lifecycle-extensions:${versions.android.architecture.lifecycleVersion}",
+                                    'compiler'  : "androidx.lifecycle:lifecycle-compiler:${versions.android.architecture.lifecycleVersion}",
+                                    'livedata'  : "androidx.lifecycle:lifecycle-livedata-ktx:${versions.android.architecture.lifecycleVersion}",
+                                    'viewModel' : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.android.architecture.lifecycleVersion}",
+                            ],
+                            'rx'       : [
+                                    'rxJava'   : "io.reactivex.rxjava2:rxjava:${versions.android.architecture.rx.rxJavaVersion}",
+                                    'rxAndroid': "io.reactivex.rxjava2:rxandroid:${versions.android.architecture.rx.rxAndroidVersion}",
+                                    'rxKotlin' : "io.reactivex.rxjava2:rxkotlin:${versions.android.architecture.rx.rxKotlinVersion}"
+                            ],
+                            'room'     : [
+                                    'runtime'  : "androidx.room:room-runtime:${versions.android.architecture.roomVersion}",
+                                    'processor': "androidx.room:room-compiler:${versions.android.architecture.roomVersion}",
+                            ],
+                    ],
+                    'support'     : [
+                            'appCompat'   : "androidx.appcompat:appcompat:${versions.android.support.appCompatVersion}",
+                            'ktx'         : "androidx.core:core-ktx:${versions.android.support.ktxVersion}",
+                            'annotation'  : "androidx.annotation:annotation:${versions.android.support.annotationVersion}",
+                            'core'        : "androidx.core:core:${versions.android.support.coreVersion}",
+                            'recyclerView': "androidx.recyclerview:recyclerview:${versions.android.support.recyclerViewVersion}",
+                            'cardView'    : "androidx.cardview:cardview:${versions.android.support.cardViewVersion}",
+                            'material'    : "com.google.android.material:material:${versions.android.support.materialVersion}",
+                            'constraint'  : "com.android.support.constraint:constraint-layout:${versions.android.support.constraintVersion}",
+                    ],
+            ],
+
+            'permissions'     : [
+                    'runtime'  : "org.permissionsdispatcher:permissionsdispatcher:${versions.permissionsDispatcherVersion}",
+                    'processor': "org.permissionsdispatcher:permissionsdispatcher-processor:${versions.permissionsDispatcherVersion}",
+            ],
+
+            'timber'          : "com.jakewharton.timber:timber:${versions.timberVersion}",
+
+            'independentPixel': [
+                    'ssp': "com.intuit.ssp:ssp-android:${versions.sspVersion}",
+                    'sdp': "com.intuit.sdp:sdp-android:${versions.sdpVersion}",
+            ],
+
+            'anko'            : "org.jetbrains.anko:anko-commons:${versions.ankoVersion}",
+
+            'gson'            : "com.google.code.gson:gson:${versions.gsonVersion}",
+
+            'junit'           : "junit:junit:${versions.junitVersion}",
+            'junitExt'        : "androidx.test.ext:junit:${versions.junitExtVersion}",
+            'runner'          : "androidx.test:runner:${versions.runnerVersion}",
+            'espresso'        : "androidx.test.espresso:espresso-core:${versions.espressoVersion}",
+    ]
+
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.0.1"
+        classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
