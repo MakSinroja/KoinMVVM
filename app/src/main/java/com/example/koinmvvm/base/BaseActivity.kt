@@ -12,12 +12,14 @@ import com.example.koinmvvm.extensions.*
 import com.example.koinmvvm.listeners.BaseFragmentListener
 import com.example.koinmvvm.listeners.SnackBarMessagesListeners
 import com.example.koinmvvm.preferences.CommonPreferences
+import org.koin.android.ext.android.get
 
 abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatActivity(),
     BaseFragmentListener, SnackBarMessagesListeners {
 
-    lateinit var commonPreferences: CommonPreferences
+    var commonPreferences: CommonPreferences = get()
 
+    abstract fun fullscreenActivity(): Boolean
     abstract fun transparentActivity(): Boolean
     abstract fun changeStatusBarColor(): Int
     abstract fun setContentView(): Int
@@ -39,6 +41,9 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
     var selectedThemeStyle: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (fullscreenActivity())
+            this.setupFullScreenActivity()
+
         if (transparentActivity())
             this.setupTransparentActivity()
 
@@ -49,7 +54,6 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
         setTheme(selectedThemeStyle)
 
         performDataBinding()
-        commonPreferences = CommonPreferences(applicationContext)
 
         snackBarMessagesListeners = this
     }

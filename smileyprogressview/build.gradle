@@ -1,0 +1,56 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion build_config.compileSdkVersion
+    buildToolsVersion build_config.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion build_config.minSdkVersion
+        targetSdkVersion build_config.targetSdkVersion
+
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    // Kotlin Standard Library
+    implementation libs.kotlin.stdLib.jdk
+
+    // MultiDex Library
+    implementation libs.multidex
+
+    // Android Support Libraries
+    implementation libs.android.support.appCompat
+    implementation libs.android.support.ktx
+    implementation libs.android.support.annotation
+    implementation libs.android.support.core
+
+    // Timber Library
+    implementation libs.timber
+
+    // Test Implementation Libraries
+    testImplementation libs.junit
+    testImplementation libs.junitExt
+    androidTestImplementation libs.runner
+    androidTestImplementation libs.espresso
+
+}

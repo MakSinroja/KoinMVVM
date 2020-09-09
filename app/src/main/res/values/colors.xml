@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="mainAppColor">#1A2B5F</color>
+    <color name="mainAppColor">#87431d</color>
 
     <!-- AppTheme Light Colors -->
-    <color name="lightThemePrimaryColor">#1A2B5F</color>
-    <color name="lightThemeStatusBarColor">#14224c</color>
+    <color name="lightThemePrimaryColor">#87431d</color>
+    <color name="lightThemeStatusBarColor">#290001</color>
     <color name="lightThemeScreenBackgroundColor">#F3F4F7</color>
-    <color name="lightThemeTextColor">#F5F6F8</color>
+    <color name="lightThemeTextColor">@android:color/white</color>
 
     <!-- AppTheme Dark Colors -->
-    <color name="darkThemePrimaryColor">#1A2B5F</color>
-    <color name="darkThemeStatusBarColor">#14224c</color>
+    <color name="darkThemePrimaryColor">#87431d</color>
+    <color name="darkThemeStatusBarColor">#290001</color>
     <color name="darkThemeScreenBackgroundColor">#F3F4F7</color>
-    <color name="darkThemeTextColor">#F5F6F8</color>
+    <color name="darkThemeTextColor">@android:color/white</color>
 </resources>

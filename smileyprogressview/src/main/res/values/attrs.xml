@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SmileyProgressView">
+        <attr name="duration" format="integer" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="strokeColor" format="color" />
+        <attr name="animRepeatCount" format="integer" />
+    </declare-styleable>
+</resources>

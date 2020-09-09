@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'koin'
 
 android {
     compileSdkVersion build_config.compileSdkVersion
@@ -118,6 +119,9 @@ dependencies {
 
     // Kotlin Standard Library
     implementation libs.kotlin.stdLib.jdk
+
+    // Custom Libraries
+    implementation project(":smileyprogressview")
 
     // MultiDex Library
     implementation libs.multidex

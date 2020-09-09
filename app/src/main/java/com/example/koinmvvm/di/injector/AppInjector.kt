@@ -6,7 +6,9 @@ import android.os.Bundle
 import com.example.koinmvvm.KoinMVVM
 import com.example.koinmvvm.di.module.apiModule
 import com.example.koinmvvm.di.module.appModule
+import com.example.koinmvvm.di.module.viewModelModule
 import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import timber.log.Timber
@@ -16,9 +18,9 @@ object AppInjector {
     fun initialization(application: KoinMVVM) {
 
         startKoin {
-            printLogger(Level.DEBUG)
+            androidLogger(Level.DEBUG)
             androidContext(application)
-            modules(listOf(appModule, apiModule))
+            modules(listOf(appModule, apiModule, viewModelModule))
         }
 
         application.registerActivityLifecycleCallbacks(object :
