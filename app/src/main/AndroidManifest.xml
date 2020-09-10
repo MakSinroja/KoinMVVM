@@ -23,6 +23,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ui.dialogs.noInternet.NoInternetDialog"
+            android:theme="@style/TransparentDialogStyle" />
+
     </application>
 
 </manifest>

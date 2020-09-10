@@ -9,7 +9,7 @@ class SplashViewModel constructor(application: Application) : BaseViewModel(appl
 
     lateinit var splashActivity: SplashActivity
 
-    fun initialization() {
+    override fun initialization() {
         splashActivity.getViewModelDataBinding().apply {
             smileyProgressView.setOnAnimPerformCompletedListener(this@SplashViewModel)
             smileyProgressView.start()

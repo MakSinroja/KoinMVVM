@@ -71,6 +71,7 @@ android {
         main {
             res.srcDirs = [
                     file('src/main/res/layouts').listFiles(),
+                    file('src/main/res/layouts/dialogs').listFiles(),
                     'src/main/res',
             ]
         }

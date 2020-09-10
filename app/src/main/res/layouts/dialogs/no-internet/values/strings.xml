@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="str_no_internet_connection">No Internet Connection</string>
+    <string name="str_no_internet_connection_content">You are not connected to the internet.\nMake sure Wi-Fi is on, Airplane Mode is off\nand try again.</string>
+
+    <string name="str_retry">Retry</string>
+</resources>

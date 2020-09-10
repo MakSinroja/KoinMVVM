@@ -1,6 +1,6 @@
 package com.example.koinmvvm.listeners
 
-interface BaseFragmentListener {
+interface BaseFragmentListeners {
     fun onFragmentAttached()
     fun onFragmentDetached(tag: String)
 }

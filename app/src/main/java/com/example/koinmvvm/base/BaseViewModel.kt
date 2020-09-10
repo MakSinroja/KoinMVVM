@@ -7,6 +7,8 @@ import com.example.koinmvvm.preferences.CommonPreferences
 
 abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {
 
+    abstract fun initialization()
+
     var commonPreferences: CommonPreferences = CommonPreferences(application)
 
     var isLoading = MutableLiveData<Boolean>()

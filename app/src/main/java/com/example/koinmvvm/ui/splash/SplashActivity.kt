@@ -10,7 +10,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
 
-    private val model by viewModel<SplashViewModel>()
+    private val model: SplashViewModel by viewModel()
 
     override fun fullscreenActivity(): Boolean = true
 

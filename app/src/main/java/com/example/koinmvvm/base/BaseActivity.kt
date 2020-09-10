@@ -9,15 +9,21 @@ import com.example.koinmvvm.R
 import com.example.koinmvvm.constants.THEME_DARK
 import com.example.koinmvvm.constants.THEME_LIGHT
 import com.example.koinmvvm.extensions.*
-import com.example.koinmvvm.listeners.BaseFragmentListener
+import com.example.koinmvvm.listeners.BaseFragmentListeners
 import com.example.koinmvvm.listeners.SnackBarMessagesListeners
 import com.example.koinmvvm.preferences.CommonPreferences
+import com.example.koinmvvm.ui.dialogs.noInternet.NoInternetDialog
+import com.example.koinmvvm.utils.networkConnection.InternetConnectionObserver
 import org.koin.android.ext.android.get
 
 abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatActivity(),
-    BaseFragmentListener, SnackBarMessagesListeners {
+    BaseFragmentListeners, SnackBarMessagesListeners {
 
     var commonPreferences: CommonPreferences = get()
+
+    var noInternetDialog: NoInternetDialog = get()
+
+    var internetConnectionObserver: InternetConnectionObserver = get()
 
     abstract fun fullscreenActivity(): Boolean
     abstract fun transparentActivity(): Boolean
@@ -56,6 +62,10 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
         performDataBinding()
 
         snackBarMessagesListeners = this
+
+        internetConnectionObserver.observe(this@BaseActivity, {
+            showNoInternetDialog(it)
+        })
     }
 
     private fun performDataBinding() {
@@ -69,6 +79,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
     override fun onDestroy() {
         super.onDestroy()
         snackBarMessagesListeners = null
+        internetConnectionObserver.removeObservers(this@BaseActivity)
     }
 
     fun getSavedTheme() {
@@ -88,5 +99,16 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
 
     override fun onWarning(message: String) {
         message.showWarningSnackBarView(window.decorView.findViewById(android.R.id.content))
+    }
+
+    private fun showNoInternetDialog(isConnected: Boolean) {
+        noInternetDialog.apply {
+            if (!isConnected) {
+                isCancelable = false
+                show(supportFragmentManager, NoInternetDialog.TAG)
+            } else
+                if (isVisible)
+                    dismiss()
+        }
     }
 }
