@@ -23,9 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ui.dialogs.noInternet.NoInternetDialog"
-            android:theme="@style/TransparentDialogStyle" />
+        <activity android:name=".ui.newsPage.NewsPageActivity" />
 
     </application>
 

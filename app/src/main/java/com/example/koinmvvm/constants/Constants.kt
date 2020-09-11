@@ -17,10 +17,10 @@ const val TIMEOUT: Long = 60
 
 const val THEME_ID = "THEME_ID"
 const val USER_TOKEN = "USER_TOKEN"
+const val NEWS_API_KEY = "NEWS_API_KEY"
 const val DEVICE_UNIQUE_ID = "DEVICE_UNIQUE_ID"
 
 const val SOMETHING_WENT_WRONG_ERROR = "Sorry, something went wrong, please try again!"
-const val UNAUTHORIZED_ACCESS_ERROR = "Unauthorized Access!"
 
 const val THEME_LIGHT = "THEME_LIGHT"
 const val THEME_DARK = "THEME_DARK"

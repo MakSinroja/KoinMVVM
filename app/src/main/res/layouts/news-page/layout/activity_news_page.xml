@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.koinmvvm.ui.newsPage.NewsPageViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?themePrimaryColor"
+            android:elevation="@dimen/_2sdp"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TitleTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/str_toolbar_title"
+                android:textSize="@dimen/_14ssp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?themeScreenBackgroundColor"
+            android:orientation="vertical">
+
+            <com.example.koinmvvm.customUi.ViewPagerLayout
+                android:id="@+id/viewPagerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.isDataAvailable() ? View.VISIBLE : View.GONE}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp"
+                android:visibility="@{viewModel.isLoading() ? View.VISIBLE : View.GONE}">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:elevation="@dimen/_2sdp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="@dimen/_25sdp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.example.smileyprogressview.ui.SmileyProgressView
+                            android:id="@+id/loadingProgressBar"
+                            android:layout_width="@dimen/_36sdp"
+                            android:layout_height="@dimen/_36sdp"
+                            android:layout_centerInParent="true"
+                            app:duration="2000"
+                            app:strokeColor="?themePrimaryColor"
+                            app:strokeWidth="@dimen/_4sdp" />
+
+                    </RelativeLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/TitleTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/str_fetch_top_headlines"
+                    android:textAllCaps="false"
+                    android:textColor="?themePrimaryColor" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

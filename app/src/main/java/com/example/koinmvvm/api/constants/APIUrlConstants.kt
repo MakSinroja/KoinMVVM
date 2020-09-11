@@ -1,3 +1,5 @@
 package com.example.koinmvvm.api.constants
 
-const val API_VERSION = "v1"
+const val countryCode = "in"
+
+const val TOP_HEADLINES_API_URL = "top-headlines"

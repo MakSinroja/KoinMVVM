@@ -79,19 +79,27 @@ android {
 
     productFlavors {
         def IP
+        def VERSION
+        def NEWS_API_KEY
         development {
-            IP = ""
+            IP = "https://newsapi.org"
+            VERSION = "v2"
+            NEWS_API_KEY = "27b45cf5ed6949298db4c13345b21d16"
             buildConfigField "String", 'BASE_URL', "\"$IP/\""
-            buildConfigField "String", 'BASE_API_URL', "\"$IP/api/\""
+            buildConfigField "String", 'BASE_API_URL', "\"$IP/$VERSION/\""
+            buildConfigField "String", 'NEWS_API_KEY', "\"Bearer $NEWS_API_KEY\""
 
             dimension "default"
             applicationIdSuffix ".development"
             resValue "string", "app_name", "$application_name - Development"
         }
         production {
-            IP = ""
+            IP = "https://newsapi.org"
+            VERSION = "v2"
+            NEWS_API_KEY = "27b45cf5ed6949298db4c13345b21d16"
             buildConfigField "String", 'BASE_URL', "\"$IP/\""
-            buildConfigField "String", 'BASE_API_URL', "\"$IP/api/\""
+            buildConfigField "String", 'BASE_API_URL', "\"$IP/$VERSION/\""
+            buildConfigField "String", 'NEWS_API_KEY', "\"Bearer $NEWS_API_KEY\""
 
             dimension "default"
             resValue "string", "app_name", application_name
@@ -185,6 +193,10 @@ dependencies {
     // OkHttp Retrofit Dependency Libraries
     implementation libs.okhttp.client
     implementation libs.okhttp.logging
+
+    // Glide Libraries
+    implementation libs.glide.runtime
+    kapt libs.glide.processor
 
     // Test Implementation Libraries
     testImplementation libs.junit

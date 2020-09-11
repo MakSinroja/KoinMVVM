@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="str_toolbar_title">Top HeadLines</string>
+
+    <string name="str_fetch_top_headlines">Please wait! Fetching Top HeadLines</string>
+</resources>

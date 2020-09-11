@@ -8,11 +8,11 @@ import okhttp3.Response
 
 class HeaderInterceptor constructor(private val context: Context) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val token = CommonPreferences(context).token
+        val apiKey = CommonPreferences(context).apiKey
 
-        if (token.isNotEmpty()) {
+        if (apiKey.isNotEmpty()) {
             val request = chain.request().newBuilder()
-                .addHeader(HEADER_AUTHORIZATION_TOKEN, token)
+                .addHeader(HEADER_AUTHORIZATION_TOKEN, apiKey)
                 .build()
             return chain.proceed(request)
         }

@@ -5,6 +5,7 @@ import android.app.Application
 import android.os.Bundle
 import com.example.koinmvvm.KoinMVVM
 import com.example.koinmvvm.di.module.apiModule
+import com.example.koinmvvm.di.module.apiRepositoryModule
 import com.example.koinmvvm.di.module.appModule
 import com.example.koinmvvm.di.module.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -20,7 +21,14 @@ object AppInjector {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(application)
-            modules(listOf(appModule, apiModule, viewModelModule))
+            modules(
+                listOf(
+                    appModule,
+                    viewModelModule,
+                    apiModule,
+                    apiRepositoryModule
+                )
+            )
         }
 
         application.registerActivityLifecycleCallbacks(object :

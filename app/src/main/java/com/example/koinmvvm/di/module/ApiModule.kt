@@ -31,15 +31,13 @@ val apiModule = module {
             interceptor.level = HttpLoggingInterceptor.Level.BODY
         else
             interceptor.level = HttpLoggingInterceptor.Level.NONE
-    }
 
-    single {
         OkHttpClient.Builder().apply {
             readTimeout(TIMEOUT, TimeUnit.SECONDS)
             connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             writeTimeout(TIMEOUT, TimeUnit.SECONDS)
             addInterceptor(get<HeaderInterceptor>())
-            addInterceptor(get<HttpLoggingInterceptor>())
+            addInterceptor(interceptor)
         }.build()
     }
 

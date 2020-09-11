@@ -16,6 +16,7 @@
 
     <style name="AppTheme.Light" parent="AppTheme">
         <item name="themePrimaryColor">@color/lightThemePrimaryColor</item>
+        <item name="themeStatusBarColor">@color/lightThemeStatusBarColor</item>
         <item name="themeScreenBackgroundColor">@color/lightThemeScreenBackgroundColor</item>
         <item name="themeTextColor">@color/lightThemeTextColor</item>
 
@@ -24,6 +25,7 @@
 
     <style name="AppTheme.Dark" parent="AppTheme">
         <item name="themePrimaryColor">@color/darkThemePrimaryColor</item>
+        <item name="themeStatusBarColor">@color/darkThemeStatusBarColor</item>
         <item name="themeScreenBackgroundColor">@color/darkThemeScreenBackgroundColor</item>
         <item name="themeTextColor">@color/darkThemeTextColor</item>
 
