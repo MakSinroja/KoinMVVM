@@ -25,6 +25,6 @@ fun showSnackBarView(view: View, text: String, drawable: Int) {
     val sbView = snackBarView.view
     sbView.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
         .setTextColor(ContextCompat.getColor(view.context, android.R.color.white))
-    sbView.setBackgroundResource(R.drawable.rounded_corner_rectangle_warning_drawable)
+    sbView.setBackgroundResource(drawable)
     snackBarView.show()
 }

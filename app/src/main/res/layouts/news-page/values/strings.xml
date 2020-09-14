@@ -4,4 +4,7 @@
     <string name="str_toolbar_title">Top HeadLines</string>
 
     <string name="str_fetch_top_headlines">Please wait! Fetching Top HeadLines</string>
+
+    <string name="str_article_bookmarked">Article bookmarked successfully!</string>
+    <string name="str_article_bookmarked_remove">Article removed from the bookmarked!</string>
 </resources>

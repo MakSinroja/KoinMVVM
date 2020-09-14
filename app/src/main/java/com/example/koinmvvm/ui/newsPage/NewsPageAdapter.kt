@@ -6,8 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
+import com.example.koinmvvm.R
+import com.example.koinmvvm.database.entities.articles.ArticlesEntity
+import com.example.koinmvvm.database.repositories.articles.ArticlesRepository
 import com.example.koinmvvm.databinding.AdapterNewsPageBinding
 import com.example.koinmvvm.extensions.loadArticleImage
+import com.example.koinmvvm.listeners.FavouriteArticleListeners
 import com.example.koinmvvm.models.articles.Articles
 import com.example.koinmvvm.utils.dateTimeFormatUtils.convertDateToString
 import com.google.android.material.card.MaterialCardView
@@ -17,10 +21,18 @@ class NewsPageAdapter(private val context: Context) : PagerAdapter() {
 
     var articleList = mutableListOf<Articles>()
 
+    var favouriteArticleListeners: FavouriteArticleListeners? = null
+
+    lateinit var articlesRepository: ArticlesRepository
+
     override fun getCount(): Int = articleList.size
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
         return view == `object` as MaterialCardView
+    }
+
+    override fun getItemPosition(`object`: Any): Int {
+        return POSITION_NONE
     }
 
     @SuppressLint("SetTextI18n")
@@ -53,6 +65,22 @@ class NewsPageAdapter(private val context: Context) : PagerAdapter() {
 
             articlePublishOn.text =
                 "Publish on - ${convertDateToString(article.publishAt ?: Date())}"
+
+            val articlesEntity: ArticlesEntity? =
+                articlesRepository.isFavouriteArticle(article.title)
+
+            bookmarkImage.setImageResource(R.drawable.ic_vector_not_bookmark)
+
+            if (articlesEntity != null)
+                bookmarkImage.setImageResource(R.drawable.ic_vector_bookmark)
+
+            bookmarkImage.setOnClickListener(null)
+
+            bookmarkImage.setOnClickListener {
+                favouriteArticleListeners?.let { listener ->
+                    listener.isFavouriteArticle(article, articlesEntity, articlesEntity != null)
+                }
+            }
         }
 
         container.addView(adapterNewsPagerBinding.root)

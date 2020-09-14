@@ -1,4 +1,4 @@
-package com.example.koinmvvm.di.module
+package com.example.koinmvvm.di.module.api
 
 import com.example.koinmvvm.BuildConfig
 import com.example.koinmvvm.api.APIUrls

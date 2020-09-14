@@ -4,9 +4,11 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import com.example.koinmvvm.KoinMVVM
-import com.example.koinmvvm.di.module.apiModule
-import com.example.koinmvvm.di.module.apiRepositoryModule
+import com.example.koinmvvm.di.module.api.apiModule
+import com.example.koinmvvm.di.module.api.apiRepositoryModule
 import com.example.koinmvvm.di.module.appModule
+import com.example.koinmvvm.di.module.database.databaseModule
+import com.example.koinmvvm.di.module.database.databaseRepositoryModule
 import com.example.koinmvvm.di.module.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -25,6 +27,8 @@ object AppInjector {
                 listOf(
                     appModule,
                     viewModelModule,
+                    databaseModule,
+                    databaseRepositoryModule,
                     apiModule,
                     apiRepositoryModule
                 )

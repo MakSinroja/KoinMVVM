@@ -9,5 +9,5 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel { SplashViewModel(get()) }
     viewModel { NoInternetDialogViewModel(get()) }
-    viewModel { NewsPageViewModel(get(), get()) }
+    viewModel { NewsPageViewModel(get(), get(), get()) }
 }
