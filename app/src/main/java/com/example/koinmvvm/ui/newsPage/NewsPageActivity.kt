@@ -55,4 +55,8 @@ class NewsPageActivity : BaseActivity<ActivityNewsPageBinding, NewsPageViewModel
             onWarning(it)
         })
     }
+
+    override fun onBackPressed() {
+        showExitAppDialog()
+    }
 }

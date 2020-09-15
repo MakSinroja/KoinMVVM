@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+
+            <solid android:color="?themePrimaryColor" />
+
+            <stroke
+                android:width="@dimen/_1sdp"
+                android:color="@android:color/white" />
+        </shape>
+    </item>
+    <item
+        android:width="@dimen/_24sdp"
+        android:height="@dimen/_24sdp"
+        android:bottom="@dimen/_15sdp"
+        android:drawable="@drawable/ic_vector_exit_app"
+        android:end="@dimen/_15sdp"
+        android:gravity="center"
+        android:start="@dimen/_15sdp"
+        android:top="@dimen/_15sdp" />
+</layer-list>

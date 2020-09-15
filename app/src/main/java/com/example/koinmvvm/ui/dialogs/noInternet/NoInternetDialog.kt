@@ -38,8 +38,10 @@ class NoInternetDialog :
     }
 
     private fun performViewModelVariableBinding() {
-        model.noInternetDialog = this@NoInternetDialog
-        model.initialization()
+        activity?.let {
+            model.noInternetDialogFragmentActivity = it
+            model.initialization()
+        }
     }
 
     private fun setListeners() {

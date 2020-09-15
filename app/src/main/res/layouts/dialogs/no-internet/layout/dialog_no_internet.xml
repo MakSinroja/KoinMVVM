@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_35sdp"
-            android:background="@drawable/top_rounded_corner_ractangle_drawable"
+            android:background="@drawable/top_rounded_corner_rectangle_drawable"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView

@@ -12,6 +12,7 @@ import com.example.koinmvvm.extensions.*
 import com.example.koinmvvm.listeners.BaseFragmentListeners
 import com.example.koinmvvm.listeners.SnackBarMessagesListeners
 import com.example.koinmvvm.preferences.CommonPreferences
+import com.example.koinmvvm.ui.dialogs.exitApp.ExitAppDialog
 import com.example.koinmvvm.ui.dialogs.noInternet.NoInternetDialog
 import com.example.koinmvvm.utils.networkConnection.InternetConnectionObserver
 import org.koin.android.ext.android.get
@@ -21,9 +22,11 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
 
     var commonPreferences: CommonPreferences = get()
 
-    var noInternetDialog: NoInternetDialog = get()
+    private var noInternetDialog: NoInternetDialog = get()
 
-    var internetConnectionObserver: InternetConnectionObserver = get()
+    private var exitAppDialog: ExitAppDialog = get()
+
+    private var internetConnectionObserver: InternetConnectionObserver = get()
 
     abstract fun fullscreenActivity(): Boolean
     abstract fun transparentActivity(): Boolean
@@ -109,6 +112,12 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
             } else
                 if (isVisible)
                     dismiss()
+        }
+    }
+
+    fun showExitAppDialog() {
+        exitAppDialog.apply {
+            show(supportFragmentManager, ExitAppDialog.TAG)
         }
     }
 }

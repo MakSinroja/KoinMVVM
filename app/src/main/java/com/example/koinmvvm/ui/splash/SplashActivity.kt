@@ -55,4 +55,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
             onWarning(it)
         })
     }
+
+    override fun onBackPressed() {
+        showExitAppDialog()
+    }
 }
