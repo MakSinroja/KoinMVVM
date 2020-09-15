@@ -8,14 +8,18 @@ import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.viewpager.widget.PagerAdapter
 import com.example.koinmvvm.R
+import com.example.koinmvvm.constants.ARTICLE_TITLE
+import com.example.koinmvvm.constants.URL
 import com.example.koinmvvm.database.entities.articles.ArticlesEntity
 import com.example.koinmvvm.database.repositories.articles.ArticlesRepository
 import com.example.koinmvvm.databinding.AdapterNewsPageBinding
 import com.example.koinmvvm.extensions.loadArticleImage
 import com.example.koinmvvm.listeners.FavouriteArticleListeners
 import com.example.koinmvvm.models.articles.Articles
+import com.example.koinmvvm.ui.newsPage.newsWebView.NewsWebViewActivity
 import com.example.koinmvvm.utils.dateTimeFormatUtils.convertDateToString
 import com.google.android.material.card.MaterialCardView
+import org.jetbrains.anko.startActivity
 import java.util.*
 
 class NewsPageAdapter(private val context: Context) : PagerAdapter() {
@@ -66,6 +70,13 @@ class NewsPageAdapter(private val context: Context) : PagerAdapter() {
 
             articlePublishOn.text =
                 "Publish on - ${convertDateToString(article.publishAt ?: Date())}"
+
+            articleTitle.setOnClickListener {
+                (context as NewsPageActivity).startActivity<NewsWebViewActivity>(
+                    ARTICLE_TITLE to article.title,
+                    URL to article.url
+                )
+            }
 
             val articlesEntity: LiveData<ArticlesEntity?> =
                 articlesRepository.isBookmarkArticle(article.title)

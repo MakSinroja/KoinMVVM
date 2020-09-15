@@ -7,11 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import com.example.koinmvvm.R
+import com.example.koinmvvm.constants.ARTICLE_TITLE
+import com.example.koinmvvm.constants.URL
 import com.example.koinmvvm.database.entities.articles.ArticlesEntity
 import com.example.koinmvvm.databinding.AdapterNewsPageBinding
 import com.example.koinmvvm.extensions.loadArticleImage
 import com.example.koinmvvm.listeners.FavouriteArticleListeners
+import com.example.koinmvvm.ui.newsPage.newsWebView.NewsWebViewActivity
 import com.google.android.material.card.MaterialCardView
+import org.jetbrains.anko.startActivity
 
 class BookmarkedNewsPageAdapter(private val context: Context) : PagerAdapter() {
 
@@ -59,6 +63,13 @@ class BookmarkedNewsPageAdapter(private val context: Context) : PagerAdapter() {
 
             articlePublishOn.text =
                 "Publish on - ${article.publishAt}"
+
+            articleTitle.setOnClickListener {
+                (context as BookmarkedNewsPageActivity).startActivity<NewsWebViewActivity>(
+                    ARTICLE_TITLE to article.title,
+                    URL to article.url
+                )
+            }
 
             bookmarkImage.setImageResource(R.drawable.ic_vector_bookmark)
 
