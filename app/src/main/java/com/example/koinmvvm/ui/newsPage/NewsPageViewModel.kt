@@ -2,6 +2,7 @@ package com.example.koinmvvm.ui.newsPage
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
+import androidx.viewpager.widget.ViewPager
 import com.example.koinmvvm.R
 import com.example.koinmvvm.api.repositories.topHeadLinesRepository.TopHeadLinesRepository
 import com.example.koinmvvm.base.BaseViewModel
@@ -35,6 +36,9 @@ class NewsPageViewModel constructor(
 
     lateinit var newsPageAdapter: NewsPageAdapter
 
+    var page: Int = 1
+    var totalArticles: Int = 0
+
     init {
         isDataAvailable.value = false
     }
@@ -48,8 +52,7 @@ class NewsPageViewModel constructor(
     }
 
     private fun fetchTopHeadLinesNews() {
-
-        topHeadLinesRepository.getTopHeadLinesNews(newsPageActivity)
+        topHeadLinesRepository.getTopHeadLinesNews(newsPageActivity, page)
             .observe(newsPageActivity, {
                 when (it.status) {
                     Status.LOADING -> loadingProgressBarLayout.start()
@@ -57,9 +60,16 @@ class NewsPageViewModel constructor(
                         isLoading.value = false
                         loadingProgressBarLayout.stop()
 
-                        isDataAvailable.value = it.data?.size != 0
-                        articleList = it.data ?: mutableListOf()
-                        setupPageAdapter()
+                        if (articleList.isEmpty()) {
+                            isDataAvailable.value = it.data?.size != 0
+                            articleList = it.data ?: mutableListOf()
+                            totalArticles = it.totalResult
+
+                            setupPageAdapter()
+                        } else {
+                            articleList.addAll(it.data ?: mutableListOf())
+                            newsPageAdapter.notifyDataSetChanged()
+                        }
                     }
                     Status.BAD_REQUEST,
                     Status.SERVER_ERROR,
@@ -86,6 +96,25 @@ class NewsPageViewModel constructor(
 
         newsPageActivity.getViewModelDataBinding().apply {
             viewPagerLayout.adapter = newsPageAdapter
+
+            viewPagerLayout.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
+                }
+
+                override fun onPageSelected(position: Int) {
+                    if (position == (articleList.size - 1) && articleList.size < totalArticles) {
+                        page++
+                        fetchTopHeadLinesNews()
+                    }
+                }
+
+                override fun onPageScrollStateChanged(state: Int) {
+                }
+            })
         }
     }
 

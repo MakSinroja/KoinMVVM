@@ -14,6 +14,7 @@ interface APIUrls {
     @GET(TOP_HEADLINES_API_URL)
     fun getTopHeadLinesNews(
         @Query("country") country: String = countryCode,
-        @Query("pageSize") pageSize: Int = 100
+        @Query("pageSize") pageSize: Int = 20,
+        @Query("page") page: Int = 0
     ): Observable<Response<BaseResponse<MutableList<Articles>>>>
 }

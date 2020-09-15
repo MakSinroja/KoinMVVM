@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="mainAppColor">#87431d</color>
+    <color name="transparentColor">#5087431d</color>
 
     <!-- AppTheme Light Colors -->
     <color name="lightThemePrimaryColor">#87431d</color>

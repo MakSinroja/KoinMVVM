@@ -20,11 +20,14 @@ import timber.log.Timber
 class TopHeadLinesRepository constructor(private val apiUrls: APIUrls) {
 
     @SuppressLint("CheckResult")
-    fun getTopHeadLinesNews(context: Context): MutableLiveData<BaseResource<MutableList<Articles>>> {
+    fun getTopHeadLinesNews(
+        context: Context,
+        page: Int
+    ): MutableLiveData<BaseResource<MutableList<Articles>>> {
         val liveData = MutableLiveData<BaseResource<MutableList<Articles>>>()
         liveData.postValue(BaseResource.loading())
 
-        apiUrls.getTopHeadLinesNews()
+        apiUrls.getTopHeadLinesNews(page = page)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ serverResponse ->
@@ -36,6 +39,7 @@ class TopHeadLinesRepository constructor(private val apiUrls: APIUrls) {
                             liveData.postValue(
                                 BaseResource.success(
                                     baseResponse.articles,
+                                    baseResponse.totalResult,
                                     baseResponse.message ?: ""
                                 )
                             )
