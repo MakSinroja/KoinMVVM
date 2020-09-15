@@ -1,30 +1,23 @@
-package com.example.koinmvvm.ui.newsPage
+package com.example.koinmvvm.ui.newsPage.bookmarkedNewsPage
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
 import androidx.viewpager.widget.PagerAdapter
 import com.example.koinmvvm.R
 import com.example.koinmvvm.database.entities.articles.ArticlesEntity
-import com.example.koinmvvm.database.repositories.articles.ArticlesRepository
 import com.example.koinmvvm.databinding.AdapterNewsPageBinding
 import com.example.koinmvvm.extensions.loadArticleImage
 import com.example.koinmvvm.listeners.FavouriteArticleListeners
-import com.example.koinmvvm.models.articles.Articles
-import com.example.koinmvvm.utils.dateTimeFormatUtils.convertDateToString
 import com.google.android.material.card.MaterialCardView
-import java.util.*
 
-class NewsPageAdapter(private val context: Context) : PagerAdapter() {
+class BookmarkedNewsPageAdapter(private val context: Context) : PagerAdapter() {
 
-    var articleList = mutableListOf<Articles>()
+    var articleList = mutableListOf<ArticlesEntity>()
 
     var favouriteArticleListeners: FavouriteArticleListeners? = null
-
-    lateinit var articlesRepository: ArticlesRepository
 
     override fun getCount(): Int = articleList.size
 
@@ -65,26 +58,17 @@ class NewsPageAdapter(private val context: Context) : PagerAdapter() {
             }
 
             articlePublishOn.text =
-                "Publish on - ${convertDateToString(article.publishAt ?: Date())}"
+                "Publish on - ${article.publishAt}"
 
-            val articlesEntity: LiveData<ArticlesEntity?> =
-                articlesRepository.isBookmarkArticle(article.title)
+            bookmarkImage.setImageResource(R.drawable.ic_vector_bookmark)
 
-            articlesEntity.observe((context as NewsPageActivity), { entity ->
+            bookmarkImage.setOnClickListener(null)
 
-                bookmarkImage.setImageResource(R.drawable.ic_vector_not_bookmark)
-
-                if (entity != null)
-                    bookmarkImage.setImageResource(R.drawable.ic_vector_bookmark)
-
-                bookmarkImage.setOnClickListener(null)
-
-                bookmarkImage.setOnClickListener {
-                    favouriteArticleListeners?.let { listener ->
-                        listener.isFavouriteArticle(article, entity, entity != null)
-                    }
+            bookmarkImage.setOnClickListener {
+                favouriteArticleListeners?.let { listener ->
+                    listener.isFavouriteArticle(null, article, true)
                 }
-            })
+            }
         }
 
         container.addView(adapterNewsPagerBinding.root)

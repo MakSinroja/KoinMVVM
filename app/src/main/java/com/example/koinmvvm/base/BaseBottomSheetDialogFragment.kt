@@ -11,6 +11,7 @@ import androidx.lifecycle.LifecycleOwner
 import com.example.koinmvvm.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
+@Suppress("UNCHECKED_CAST")
 abstract class BaseBottomSheetDialogFragment<T : ViewDataBinding, V : BaseViewModel> :
     BottomSheetDialogFragment() {
 

@@ -1,7 +1,6 @@
 package com.example.koinmvvm.ui.splash
 
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import com.example.koinmvvm.BR
 import com.example.koinmvvm.R
 import com.example.koinmvvm.base.BaseActivity
@@ -44,15 +43,15 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
     }
 
     private fun setListeners() {
-        model.failureMessage.observe(this@SplashActivity, Observer {
+        model.failureMessage.observe(this@SplashActivity, {
             onFailure(it)
         })
 
-        model.successMessage.observe(this@SplashActivity, Observer {
+        model.successMessage.observe(this@SplashActivity, {
             onSuccess(it)
         })
 
-        model.warningMessage.observe(this@SplashActivity, Observer {
+        model.warningMessage.observe(this@SplashActivity, {
             onWarning(it)
         })
     }

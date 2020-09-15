@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.koinmvvm.ui.newsPage.bookmarkedNewsPage.BookmarkedNewsPageViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?themePrimaryColor"
+            android:elevation="@dimen/_2sdp"
+            android:gravity="center_vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:onClick="@{viewModel::onBackPressed}"
+                app:srcCompat="@drawable/ic_vector_back" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TitleTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:text="@string/str_bookmarked_toolbar_title"
+                android:textSize="@dimen/_14ssp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?themeScreenBackgroundColor"
+            android:orientation="vertical">
+
+            <com.example.koinmvvm.customUi.ViewPagerLayout
+                android:id="@+id/viewPagerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.isDataAvailable() ? View.VISIBLE : View.GONE}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="@{viewModel.isDataAvailable() ? View.GONE : View.VISIBLE}">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    app:srcCompat="@drawable/ic_vector_bookmark" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/TitleTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_no_bookmarked_title"
+                    android:textColor="?themePrimaryColor" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ContentTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_no_bookmarked_content"
+                    android:textColor="?themePrimaryColor" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

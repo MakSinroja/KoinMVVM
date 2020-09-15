@@ -21,15 +21,33 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?themePrimaryColor"
             android:elevation="@dimen/_2sdp"
-            android:gravity="center">
+            android:gravity="center_vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/TitleTextViewStyle"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_weight="1"
                 android:text="@string/str_toolbar_title"
                 android:textSize="@dimen/_14ssp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{viewModel::onClickBookmarkedNews}"
+                app:srcCompat="@drawable/ic_vector_bookmark"
+                app:tint="@android:color/white" />
 
         </LinearLayout>
 

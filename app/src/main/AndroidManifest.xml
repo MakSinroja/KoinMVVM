@@ -24,6 +24,7 @@
         </activity>
 
         <activity android:name=".ui.newsPage.NewsPageActivity" />
+        <activity android:name=".ui.newsPage.bookmarkedNewsPage.BookmarkedNewsPageActivity" />
 
     </application>
 

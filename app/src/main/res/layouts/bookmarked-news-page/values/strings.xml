@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="str_bookmarked_toolbar_title">Bookmarked News</string>
+
+    <string name="str_no_bookmarked_title">Nothing here but us!</string>
+    <string name="str_no_bookmarked_content">Your bookmarks news appear here.</string>
+</resources>

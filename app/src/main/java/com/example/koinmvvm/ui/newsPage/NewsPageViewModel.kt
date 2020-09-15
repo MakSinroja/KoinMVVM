@@ -1,6 +1,7 @@
 package com.example.koinmvvm.ui.newsPage
 
 import android.app.Application
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.viewpager.widget.ViewPager
 import com.example.koinmvvm.R
@@ -12,11 +13,13 @@ import com.example.koinmvvm.database.entities.articles.ArticlesEntity
 import com.example.koinmvvm.database.repositories.articles.ArticlesRepository
 import com.example.koinmvvm.listeners.FavouriteArticleListeners
 import com.example.koinmvvm.models.articles.Articles
+import com.example.koinmvvm.ui.newsPage.bookmarkedNewsPage.BookmarkedNewsPageActivity
 import com.example.koinmvvm.utils.dateTimeFormatUtils.convertDateTimeLocalToUTC
 import com.example.koinmvvm.utils.enums.Status
 import com.example.smileyprogressview.listeners.OnAnimPerformCompletedListener
 import com.example.smileyprogressview.ui.SmileyProgressView
 import com.google.gson.Gson
+import org.jetbrains.anko.startActivity
 import java.util.*
 
 class NewsPageViewModel constructor(
@@ -127,7 +130,7 @@ class NewsPageViewModel constructor(
     }
 
     override fun isFavouriteArticle(
-        articles: Articles,
+        articles: Articles?,
         articlesEntity: ArticlesEntity?,
         isFavourite: Boolean
     ) {
@@ -138,8 +141,10 @@ class NewsPageViewModel constructor(
                 Gson().fromJson(Gson().toJson(articles), ArticlesEntity::class.java)
 
             newArticlesEntity.articleId = randomUUID
-            newArticlesEntity.sourceId = articles.source.id
-            newArticlesEntity.sourceName = articles.source.name
+            articles?.let { article ->
+                newArticlesEntity.sourceId = article.source.id
+                newArticlesEntity.sourceName = article.source.name
+            }
 
             newArticlesEntity.watcher = Watcher(
                 createdAt = convertDateTimeLocalToUTC(Date()),
@@ -163,5 +168,9 @@ class NewsPageViewModel constructor(
         }
 
         newsPageAdapter.notifyDataSetChanged()
+    }
+
+    fun onClickBookmarkedNews(view: View) {
+        (view.context as NewsPageActivity).startActivity<BookmarkedNewsPageActivity>()
     }
 }

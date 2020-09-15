@@ -5,7 +5,7 @@ import com.example.koinmvvm.models.articles.Articles
 
 interface FavouriteArticleListeners {
     fun isFavouriteArticle(
-        articles: Articles,
+        articles: Articles?,
         articlesEntity: ArticlesEntity?,
         isFavourite: Boolean
     )

@@ -1,7 +1,6 @@
 package com.example.koinmvvm.ui.newsPage
 
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import com.example.koinmvvm.BR
 import com.example.koinmvvm.R
 import com.example.koinmvvm.base.BaseActivity
@@ -44,15 +43,15 @@ class NewsPageActivity : BaseActivity<ActivityNewsPageBinding, NewsPageViewModel
     }
 
     private fun setListeners() {
-        model.failureMessage.observe(this@NewsPageActivity, Observer {
+        model.failureMessage.observe(this@NewsPageActivity, {
             onFailure(it)
         })
 
-        model.successMessage.observe(this@NewsPageActivity, Observer {
+        model.successMessage.observe(this@NewsPageActivity, {
             onSuccess(it)
         })
 
-        model.warningMessage.observe(this@NewsPageActivity, Observer {
+        model.warningMessage.observe(this@NewsPageActivity, {
             onWarning(it)
         })
     }
