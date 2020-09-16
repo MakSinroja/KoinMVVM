@@ -21,15 +21,11 @@ class BookmarkedNewsPageViewModel constructor(
 
     lateinit var bookmarkedNewsPageActivity: BookmarkedNewsPageActivity
 
-    var isDataAvailable = MutableLiveData<Boolean>()
+    var isDataAvailable = MutableLiveData<Boolean>().apply { value = false }
 
     var articleList = mutableListOf<ArticlesEntity>()
 
     lateinit var bookmarkedNewsPageAdapter: BookmarkedNewsPageAdapter
-
-    init {
-        isDataAvailable.value = false
-    }
 
     override fun initialization() {
         fetchBookmarkedNews()

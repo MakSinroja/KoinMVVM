@@ -75,9 +75,7 @@ class BookmarkedNewsPageAdapter(private val context: Context) : PagerAdapter() {
             bookmarkImage.setImageResource(R.drawable.ic_vector_bookmark)
 
             bookmarkImage.setOnClickListener {
-                newsArticleListeners?.let { listener ->
-                    listener.isFavouriteArticle(null, article, true)
-                }
+                newsArticleListeners?.isFavouriteArticle(null, article, true)
             }
 
             shareNews.setOnClickListener {
@@ -91,9 +89,7 @@ class BookmarkedNewsPageAdapter(private val context: Context) : PagerAdapter() {
                 nextArticleTitle.text = articleList[position + 1].title
 
                 nextArticleLayout.setOnClickListener {
-                    newsArticleListeners?.let { listener ->
-                        listener.showNextArticleStory(position + 1)
-                    }
+                    newsArticleListeners?.showNextArticleStory(position + 1)
                 }
             }
         }
