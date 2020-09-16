@@ -14,6 +14,7 @@ import com.example.koinmvvm.database.entities.articles.ArticlesEntity
 import com.example.koinmvvm.database.repositories.articles.ArticlesRepository
 import com.example.koinmvvm.databinding.AdapterNewsPageBinding
 import com.example.koinmvvm.extensions.loadArticleImage
+import com.example.koinmvvm.extensions.shareContent
 import com.example.koinmvvm.listeners.NewsArticleListeners
 import com.example.koinmvvm.models.articles.Articles
 import com.example.koinmvvm.ui.newsPage.newsWebView.NewsWebViewActivity
@@ -89,6 +90,10 @@ class NewsPageAdapter(private val context: Context) : PagerAdapter() {
                     ARTICLE_TITLE to article.title,
                     URL to article.url
                 )
+            }
+
+            shareNews.setOnClickListener {
+                context.shareContent(article.url)
             }
 
             val articlesEntity: LiveData<ArticlesEntity?> =

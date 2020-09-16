@@ -12,6 +12,7 @@ import com.example.koinmvvm.constants.URL
 import com.example.koinmvvm.database.entities.articles.ArticlesEntity
 import com.example.koinmvvm.databinding.AdapterNewsPageBinding
 import com.example.koinmvvm.extensions.loadArticleImage
+import com.example.koinmvvm.extensions.shareContent
 import com.example.koinmvvm.listeners.NewsArticleListeners
 import com.example.koinmvvm.ui.newsPage.newsWebView.NewsWebViewActivity
 import com.google.android.material.card.MaterialCardView
@@ -77,6 +78,10 @@ class BookmarkedNewsPageAdapter(private val context: Context) : PagerAdapter() {
                 newsArticleListeners?.let { listener ->
                     listener.isFavouriteArticle(null, article, true)
                 }
+            }
+
+            shareNews.setOnClickListener {
+                context.shareContent(article.url)
             }
 
             if ((articleList.size - 1) == position) {
