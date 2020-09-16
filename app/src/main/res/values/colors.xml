@@ -7,11 +7,11 @@
     <color name="lightThemePrimaryColor">#87431d</color>
     <color name="lightThemeStatusBarColor">#934a1f</color>
     <color name="lightThemeScreenBackgroundColor">#F3F4F7</color>
-    <color name="lightThemeTextColor">@android:color/white</color>
+    <color name="lightThemeTextColor">@android:color/black</color>
 
     <!-- AppTheme Dark Colors -->
     <color name="darkThemePrimaryColor">#87431d</color>
     <color name="darkThemeStatusBarColor">#934a1f</color>
-    <color name="darkThemeScreenBackgroundColor">#F3F4F7</color>
+    <color name="darkThemeScreenBackgroundColor">#08090c</color>
     <color name="darkThemeTextColor">@android:color/white</color>
 </resources>

@@ -8,6 +8,8 @@ import com.example.koinmvvm.R
 import com.example.koinmvvm.api.repositories.topHeadLinesRepository.TopHeadLinesRepository
 import com.example.koinmvvm.base.BaseViewModel
 import com.example.koinmvvm.constants.SOMETHING_WENT_WRONG_ERROR
+import com.example.koinmvvm.constants.THEME_DARK
+import com.example.koinmvvm.constants.THEME_LIGHT
 import com.example.koinmvvm.database.entities.Watcher
 import com.example.koinmvvm.database.entities.articles.ArticlesEntity
 import com.example.koinmvvm.database.repositories.articles.ArticlesRepository
@@ -172,5 +174,16 @@ class NewsPageViewModel constructor(
 
     fun onClickBookmarkedNews(view: View) {
         (view.context as NewsPageActivity).startActivity<BookmarkedNewsPageActivity>()
+    }
+
+    fun onClickChangeTheme(view: View) {
+        if (commonPreferences.themeId == THEME_LIGHT)
+            newsPageActivity.commonPreferences.themeId = THEME_DARK
+        else
+            newsPageActivity.commonPreferences.themeId = THEME_LIGHT
+
+        articleList.clear()
+
+        newsPageActivity.recreate()
     }
 }

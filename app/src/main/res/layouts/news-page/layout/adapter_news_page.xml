@@ -69,7 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:textColor="@android:color/black"
+                    android:textColor="?themeTextColor"
                     android:textSize="@dimen/_8ssp"
                     android:textStyle="bold" />
 
@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:ellipsize="end"
-                    android:textColor="@android:color/black" />
+                    android:textColor="?themeTextColor" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/articleContent"
@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:ellipsize="end"
-                    android:textColor="@android:color/black" />
+                    android:textColor="?themeTextColor" />
 
             </LinearLayout>
 

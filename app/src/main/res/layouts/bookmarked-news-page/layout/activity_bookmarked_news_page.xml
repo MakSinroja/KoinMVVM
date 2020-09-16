@@ -70,14 +70,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/str_no_bookmarked_title"
-                    android:textColor="?themePrimaryColor" />
+                    android:textColor="?themeTextColor" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     style="@style/ContentTextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/str_no_bookmarked_content"
-                    android:textColor="?themePrimaryColor" />
+                    android:textColor="?themeTextColor" />
 
             </LinearLayout>
 
