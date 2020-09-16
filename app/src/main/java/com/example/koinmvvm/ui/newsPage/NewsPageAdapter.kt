@@ -101,8 +101,6 @@ class NewsPageAdapter(private val context: Context) : PagerAdapter() {
                 if (entity != null)
                     bookmarkImage.setImageResource(R.drawable.ic_vector_bookmark)
 
-                bookmarkImage.setOnClickListener(null)
-
                 bookmarkImage.setOnClickListener {
                     newsArticleListeners?.let { listener ->
                         listener.isFavouriteArticle(article, entity, entity != null)

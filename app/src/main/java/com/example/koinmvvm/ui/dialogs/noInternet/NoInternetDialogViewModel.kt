@@ -8,7 +8,9 @@ class NoInternetDialogViewModel constructor(application: Application) : BaseView
 
     lateinit var noInternetDialogFragmentActivity: FragmentActivity
 
-    override fun initialization() {
+    override fun initialization() {}
 
-    }
+    override fun snackBarMessagesObserver() {}
+
+    override fun removeSnackBarMessagesObserver() {}
 }

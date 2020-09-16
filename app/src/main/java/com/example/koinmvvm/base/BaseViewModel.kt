@@ -8,6 +8,8 @@ import com.example.koinmvvm.preferences.CommonPreferences
 abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {
 
     abstract fun initialization()
+    abstract fun snackBarMessagesObserver()
+    abstract fun removeSnackBarMessagesObserver()
 
     var commonPreferences: CommonPreferences = CommonPreferences(application)
 

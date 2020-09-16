@@ -5,11 +5,11 @@ import com.example.koinmvvm.BR
 import com.example.koinmvvm.R
 import com.example.koinmvvm.base.BaseActivity
 import com.example.koinmvvm.databinding.ActivityNewsPageBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.android.ext.android.inject
 
 class NewsPageActivity : BaseActivity<ActivityNewsPageBinding, NewsPageViewModel>() {
 
-    private val model: NewsPageViewModel by viewModel()
+    private val model: NewsPageViewModel by inject()
 
     override fun fullscreenActivity(): Boolean = false
 
@@ -32,9 +32,7 @@ class NewsPageActivity : BaseActivity<ActivityNewsPageBinding, NewsPageViewModel
 
     override fun onDestroy() {
         super.onDestroy()
-        model.failureMessage.removeObservers(this@NewsPageActivity)
-        model.successMessage.removeObservers(this@NewsPageActivity)
-        model.warningMessage.removeObservers(this@NewsPageActivity)
+        model.removeSnackBarMessagesObserver()
     }
 
     private fun performViewModelVariableBinding() {
@@ -43,17 +41,7 @@ class NewsPageActivity : BaseActivity<ActivityNewsPageBinding, NewsPageViewModel
     }
 
     private fun setListeners() {
-        model.failureMessage.observe(this@NewsPageActivity, {
-            onFailure(it)
-        })
-
-        model.successMessage.observe(this@NewsPageActivity, {
-            onSuccess(it)
-        })
-
-        model.warningMessage.observe(this@NewsPageActivity, {
-            onWarning(it)
-        })
+        model.snackBarMessagesObserver()
     }
 
     override fun onBackPressed() {

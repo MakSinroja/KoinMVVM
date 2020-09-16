@@ -5,11 +5,11 @@ import com.example.koinmvvm.BR
 import com.example.koinmvvm.R
 import com.example.koinmvvm.base.BaseActivity
 import com.example.koinmvvm.databinding.ActivitySplashBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.android.ext.android.inject
 
 class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
 
-    private val model: SplashViewModel by viewModel()
+    private val model: SplashViewModel by inject()
 
     override fun fullscreenActivity(): Boolean = true
 
@@ -32,9 +32,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
 
     override fun onDestroy() {
         super.onDestroy()
-        model.failureMessage.removeObservers(this@SplashActivity)
-        model.successMessage.removeObservers(this@SplashActivity)
-        model.warningMessage.removeObservers(this@SplashActivity)
+        model.removeSnackBarMessagesObserver()
     }
 
     private fun performViewModelVariableBinding() {
@@ -43,17 +41,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
     }
 
     private fun setListeners() {
-        model.failureMessage.observe(this@SplashActivity, {
-            onFailure(it)
-        })
-
-        model.successMessage.observe(this@SplashActivity, {
-            onSuccess(it)
-        })
-
-        model.warningMessage.observe(this@SplashActivity, {
-            onWarning(it)
-        })
+        model.snackBarMessagesObserver()
     }
 
     override fun onBackPressed() {

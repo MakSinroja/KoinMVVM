@@ -10,6 +10,10 @@ class ExitAppViewModel constructor(application: Application) : BaseViewModel(app
     override fun initialization() {
     }
 
+    override fun snackBarMessagesObserver() {}
+
+    override fun removeSnackBarMessagesObserver() {}
+
     fun onClickNo() {
         if (exitAppDialog.isVisible)
             exitAppDialog.dismiss()

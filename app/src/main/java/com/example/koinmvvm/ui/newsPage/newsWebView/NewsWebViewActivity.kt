@@ -7,11 +7,11 @@ import com.example.koinmvvm.base.BaseActivity
 import com.example.koinmvvm.constants.ARTICLE_TITLE
 import com.example.koinmvvm.constants.URL
 import com.example.koinmvvm.databinding.ActivityNewsWebViewBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.android.ext.android.inject
 
 class NewsWebViewActivity : BaseActivity<ActivityNewsWebViewBinding, NewsWebViewViewModel>() {
 
-    private val model: NewsWebViewViewModel by viewModel()
+    private val model: NewsWebViewViewModel by inject()
 
     override fun fullscreenActivity(): Boolean = false
 
@@ -38,9 +38,7 @@ class NewsWebViewActivity : BaseActivity<ActivityNewsWebViewBinding, NewsWebView
 
     override fun onDestroy() {
         super.onDestroy()
-        model.failureMessage.removeObservers(this@NewsWebViewActivity)
-        model.successMessage.removeObservers(this@NewsWebViewActivity)
-        model.warningMessage.removeObservers(this@NewsWebViewActivity)
+        model.removeSnackBarMessagesObserver()
     }
 
     private fun performViewModelVariableBinding() {
@@ -49,17 +47,7 @@ class NewsWebViewActivity : BaseActivity<ActivityNewsWebViewBinding, NewsWebView
     }
 
     private fun setListeners() {
-        model.failureMessage.observe(this@NewsWebViewActivity, {
-            onFailure(it)
-        })
-
-        model.successMessage.observe(this@NewsWebViewActivity, {
-            onSuccess(it)
-        })
-
-        model.warningMessage.observe(this@NewsWebViewActivity, {
-            onWarning(it)
-        })
+        model.snackBarMessagesObserver()
     }
 
     private fun getIntentData() {

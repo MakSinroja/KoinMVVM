@@ -56,6 +56,28 @@ class NewsPageViewModel constructor(
         fetchTopHeadLinesNews()
     }
 
+    override fun snackBarMessagesObserver() {
+        newsPageActivity.apply {
+            failureMessage.observe(newsPageActivity, {
+                onFailure(it)
+            })
+
+            successMessage.observe(newsPageActivity, {
+                onSuccess(it)
+            })
+
+            warningMessage.observe(newsPageActivity, {
+                onWarning(it)
+            })
+        }
+    }
+
+    override fun removeSnackBarMessagesObserver() {
+        failureMessage.removeObservers(newsPageActivity)
+        successMessage.removeObservers(newsPageActivity)
+        warningMessage.removeObservers(newsPageActivity)
+    }
+
     private fun fetchTopHeadLinesNews() {
         topHeadLinesRepository.getTopHeadLinesNews(newsPageActivity, page)
             .observe(newsPageActivity, {

@@ -35,6 +35,28 @@ class BookmarkedNewsPageViewModel constructor(
         fetchBookmarkedNews()
     }
 
+    override fun snackBarMessagesObserver() {
+        bookmarkedNewsPageActivity.apply {
+            failureMessage.observe(bookmarkedNewsPageActivity, {
+                onFailure(it)
+            })
+
+            successMessage.observe(bookmarkedNewsPageActivity, {
+                onSuccess(it)
+            })
+
+            warningMessage.observe(bookmarkedNewsPageActivity, {
+                onWarning(it)
+            })
+        }
+    }
+
+    override fun removeSnackBarMessagesObserver() {
+        failureMessage.removeObservers(bookmarkedNewsPageActivity)
+        successMessage.removeObservers(bookmarkedNewsPageActivity)
+        warningMessage.removeObservers(bookmarkedNewsPageActivity)
+    }
+
     fun onBackPressed(view: View) {
         (view.context as BookmarkedNewsPageActivity).onBackPressed()
     }

@@ -24,6 +24,28 @@ class SplashViewModel constructor(application: Application) : BaseViewModel(appl
         }, 2000)
     }
 
+    override fun snackBarMessagesObserver() {
+        splashActivity.apply {
+            failureMessage.observe(splashActivity, {
+                onFailure(it)
+            })
+
+            successMessage.observe(splashActivity, {
+                onSuccess(it)
+            })
+
+            warningMessage.observe(splashActivity, {
+                onWarning(it)
+            })
+        }
+    }
+
+    override fun removeSnackBarMessagesObserver() {
+        failureMessage.removeObservers(splashActivity)
+        successMessage.removeObservers(splashActivity)
+        warningMessage.removeObservers(splashActivity)
+    }
+
     override fun onStart() {}
 
     override fun onCompleted() {}

@@ -18,6 +18,28 @@ class NewsWebViewViewModel constructor(application: Application) : BaseViewModel
         myWebViewClient = MyWebViewClient(newsWebViewActivity)
     }
 
+    override fun snackBarMessagesObserver() {
+        newsWebViewActivity.apply {
+            failureMessage.observe(newsWebViewActivity, {
+                onFailure(it)
+            })
+
+            successMessage.observe(newsWebViewActivity, {
+                onSuccess(it)
+            })
+
+            warningMessage.observe(newsWebViewActivity, {
+                onWarning(it)
+            })
+        }
+    }
+
+    override fun removeSnackBarMessagesObserver() {
+        failureMessage.removeObservers(newsWebViewActivity)
+        successMessage.removeObservers(newsWebViewActivity)
+        warningMessage.removeObservers(newsWebViewActivity)
+    }
+
     fun onBackPressed(view: View) {
         (view.context as NewsWebViewActivity).onBackPressed()
     }

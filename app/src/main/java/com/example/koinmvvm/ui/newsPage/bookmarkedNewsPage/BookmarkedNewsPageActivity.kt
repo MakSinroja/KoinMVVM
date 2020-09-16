@@ -5,12 +5,12 @@ import com.example.koinmvvm.BR
 import com.example.koinmvvm.R
 import com.example.koinmvvm.base.BaseActivity
 import com.example.koinmvvm.databinding.ActivityBookmarkedNewsPageBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.android.ext.android.inject
 
 class BookmarkedNewsPageActivity :
     BaseActivity<ActivityBookmarkedNewsPageBinding, BookmarkedNewsPageViewModel>() {
 
-    private val model: BookmarkedNewsPageViewModel by viewModel()
+    private val model: BookmarkedNewsPageViewModel by inject()
 
     override fun fullscreenActivity(): Boolean = false
 
@@ -33,9 +33,7 @@ class BookmarkedNewsPageActivity :
 
     override fun onDestroy() {
         super.onDestroy()
-        model.failureMessage.removeObservers(this@BookmarkedNewsPageActivity)
-        model.successMessage.removeObservers(this@BookmarkedNewsPageActivity)
-        model.warningMessage.removeObservers(this@BookmarkedNewsPageActivity)
+        model.removeSnackBarMessagesObserver()
     }
 
     private fun performViewModelVariableBinding() {
@@ -44,16 +42,6 @@ class BookmarkedNewsPageActivity :
     }
 
     private fun setListeners() {
-        model.failureMessage.observe(this@BookmarkedNewsPageActivity, {
-            onFailure(it)
-        })
-
-        model.successMessage.observe(this@BookmarkedNewsPageActivity, {
-            onSuccess(it)
-        })
-
-        model.warningMessage.observe(this@BookmarkedNewsPageActivity, {
-            onWarning(it)
-        })
+        model.snackBarMessagesObserver()
     }
 }
