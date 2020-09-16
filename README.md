@@ -3,6 +3,7 @@
 A simple Android mobile application that has been implemented using clean architecture alongside with Kotlin, Koin, MVVM, Retrofit, Room, Lifecycle, LiveData, Material Design, and custom pager library to retrieve news data from the NewsApi.org website. This simple mobile application purpose to just explore the clean Koin dependency injection architecture.
 
 # Screenshots
+![](app.gif)
 
 # Note
 To run the app you have to add the NewsApi.org key. I have taken this step due to limited access to daily requests for News. Getting a key would take just a few seconds :)
