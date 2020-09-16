@@ -45,7 +45,7 @@ class NewsPageViewModel constructor(
     var totalArticles: Int = 0
 
     init {
-        isDataAvailable.value = false
+        isDataAvailable.value = true
     }
 
     override fun initialization() {
@@ -178,11 +178,12 @@ class NewsPageViewModel constructor(
 
     fun onClickChangeTheme(view: View) {
         if (commonPreferences.themeId == THEME_LIGHT)
-            newsPageActivity.commonPreferences.themeId = THEME_DARK
+            commonPreferences.themeId = THEME_DARK
         else
-            newsPageActivity.commonPreferences.themeId = THEME_LIGHT
+            commonPreferences.themeId = THEME_LIGHT
 
         articleList.clear()
+        isDataAvailable.value = true
 
         newsPageActivity.recreate()
     }

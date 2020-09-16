@@ -77,6 +77,28 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="@{viewModel.isDataAvailable() ? View.GONE : View.VISIBLE}">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    app:srcCompat="@drawable/ic_launcher_foreground"
+                    app:tint="?themePrimaryColor" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/TitleTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_no_top_headlines_found"
+                    android:textColor="?themeTextColor" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@color/transparentColor"
                 android:gravity="center"
