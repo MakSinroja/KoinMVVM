@@ -21,7 +21,7 @@ class SplashViewModel constructor(application: Application) : BaseViewModel(appl
         Handler().postDelayed({
             splashActivity.startActivity<NewsPageActivity>()
             splashActivity.finish()
-        }, 2000)
+        }, 5000)
     }
 
     override fun snackBarMessagesObserver() {

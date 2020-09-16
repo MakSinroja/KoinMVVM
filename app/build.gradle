@@ -84,7 +84,7 @@ android {
         development {
             IP = "https://newsapi.org"
             VERSION = "v2"
-            NEWS_API_KEY = "27b45cf5ed6949298db4c13345b21d16"
+            NEWS_API_KEY = "PASTE YOUR API KEY HERE"
             buildConfigField "String", 'BASE_URL', "\"$IP/\""
             buildConfigField "String", 'BASE_API_URL', "\"$IP/$VERSION/\""
             buildConfigField "String", 'NEWS_API_KEY', "\"Bearer $NEWS_API_KEY\""
@@ -96,7 +96,7 @@ android {
         production {
             IP = "https://newsapi.org"
             VERSION = "v2"
-            NEWS_API_KEY = "27b45cf5ed6949298db4c13345b21d16"
+            NEWS_API_KEY = "PASTE YOUR API KEY HERE"
             buildConfigField "String", 'BASE_URL', "\"$IP/\""
             buildConfigField "String", 'BASE_API_URL', "\"$IP/$VERSION/\""
             buildConfigField "String", 'NEWS_API_KEY', "\"Bearer $NEWS_API_KEY\""
