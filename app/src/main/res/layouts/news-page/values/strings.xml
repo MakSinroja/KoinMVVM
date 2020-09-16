@@ -7,6 +7,8 @@
 
     <string name="str_no_top_headlines_found">No top headlines found!</string>
 
+    <string name="str_next_article">Next Article</string>
+
     <string name="str_article_bookmarked">Article bookmarked successfully!</string>
     <string name="str_article_bookmarked_remove">Article removed from the bookmarked!</string>
 </resources>

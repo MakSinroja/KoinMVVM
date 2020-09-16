@@ -14,7 +14,7 @@ import com.example.koinmvvm.database.entities.articles.ArticlesEntity
 import com.example.koinmvvm.database.repositories.articles.ArticlesRepository
 import com.example.koinmvvm.databinding.AdapterNewsPageBinding
 import com.example.koinmvvm.extensions.loadArticleImage
-import com.example.koinmvvm.listeners.FavouriteArticleListeners
+import com.example.koinmvvm.listeners.NewsArticleListeners
 import com.example.koinmvvm.models.articles.Articles
 import com.example.koinmvvm.ui.newsPage.newsWebView.NewsWebViewActivity
 import com.example.koinmvvm.utils.dateTimeFormatUtils.convertDateToString
@@ -26,7 +26,7 @@ class NewsPageAdapter(private val context: Context) : PagerAdapter() {
 
     var articleList = mutableListOf<Articles>()
 
-    var favouriteArticleListeners: FavouriteArticleListeners? = null
+    var newsArticleListeners: NewsArticleListeners? = null
 
     lateinit var articlesRepository: ArticlesRepository
 
@@ -71,6 +71,19 @@ class NewsPageAdapter(private val context: Context) : PagerAdapter() {
             articlePublishOn.text =
                 "Publish on - ${convertDateToString(article.publishAt ?: Date())}"
 
+            if ((articleList.size - 1) == position) {
+                nextArticleLayout.visibility = View.GONE
+            } else {
+                nextArticleLayout.visibility = View.VISIBLE
+                nextArticleTitle.text = articleList[position + 1].title
+
+                nextArticleLayout.setOnClickListener {
+                    newsArticleListeners?.let { listener ->
+                        listener.showNextArticleStory(position + 1)
+                    }
+                }
+            }
+
             articleTitle.setOnClickListener {
                 (context as NewsPageActivity).startActivity<NewsWebViewActivity>(
                     ARTICLE_TITLE to article.title,
@@ -91,7 +104,7 @@ class NewsPageAdapter(private val context: Context) : PagerAdapter() {
                 bookmarkImage.setOnClickListener(null)
 
                 bookmarkImage.setOnClickListener {
-                    favouriteArticleListeners?.let { listener ->
+                    newsArticleListeners?.let { listener ->
                         listener.isFavouriteArticle(article, entity, entity != null)
                     }
                 }

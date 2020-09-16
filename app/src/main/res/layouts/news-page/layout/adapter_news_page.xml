@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -33,63 +34,102 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="6"
-                android:orientation="vertical"
-                android:padding="@dimen/_10sdp">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="top"
-                    android:orientation="horizontal">
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/articleTitle"
+                            style="@style/TitleTextViewStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            android:ellipsize="end"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackground"
+                            android:maxLines="3"
+                            android:textColor="?themePrimaryColor" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/bookmarkImage"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            app:srcCompat="@drawable/ic_vector_not_bookmark" />
+
+                    </LinearLayout>
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/articleTitle"
-                        style="@style/TitleTextViewStyle"
-                        android:layout_width="0dp"
+                        android:id="@+id/articlePublishOn"
+                        style="@style/ContentTextViewStyle"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:clickable="true"
                         android:ellipsize="end"
-                        android:focusable="true"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:maxLines="3"
-                        android:textColor="?themePrimaryColor" />
+                        android:textColor="?themeTextColor"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="bold" />
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/bookmarkImage"
-                        android:layout_width="@dimen/_24sdp"
-                        android:layout_height="@dimen/_24sdp"
-                        app:srcCompat="@drawable/ic_vector_not_bookmark" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/articleDescription"
+                        style="@style/ContentTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:ellipsize="end"
+                        android:textColor="?themeTextColor" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/articleContent"
+                        style="@style/ContentTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:ellipsize="end"
+                        android:textColor="?themeTextColor" />
 
                 </LinearLayout>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/articlePublishOn"
-                    style="@style/ContentTextViewStyle"
+                <LinearLayout
+                    android:id="@+id/nextArticleLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:textColor="?themeTextColor"
-                    android:textSize="@dimen/_8ssp"
-                    android:textStyle="bold" />
+                    android:background="@drawable/top_rounded_corner_rectangle_drawable"
+                    android:backgroundTint="?themePrimaryColor"
+                    android:elevation="@dimen/_2sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/articleDescription"
-                    style="@style/ContentTextViewStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:ellipsize="end"
-                    android:textColor="?themeTextColor" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/TitleTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_next_article"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/_10ssp" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/articleContent"
-                    style="@style/ContentTextViewStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:ellipsize="end"
-                    android:textColor="?themeTextColor" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/nextArticleTitle"
+                        style="@style/ContentTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="3"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/_10ssp"
+                        tools:text="@string/str_next_article" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

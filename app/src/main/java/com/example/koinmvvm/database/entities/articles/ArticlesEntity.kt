@@ -35,7 +35,7 @@ data class ArticlesEntity(
     var url: String,
     @ColumnInfo(name = FIELD_ARTICLES_URL_TO_IMAGE)
     @SerializedName("urlToImage")
-    var urlToImage: String,
+    var urlToImage: String? = null,
     @ColumnInfo(name = FIELD_ARTICLES_PUBLISH_AT)
     @SerializedName("publishedAt")
     var publishAt: String,

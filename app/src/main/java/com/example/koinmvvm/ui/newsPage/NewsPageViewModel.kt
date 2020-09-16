@@ -13,7 +13,7 @@ import com.example.koinmvvm.constants.THEME_LIGHT
 import com.example.koinmvvm.database.entities.Watcher
 import com.example.koinmvvm.database.entities.articles.ArticlesEntity
 import com.example.koinmvvm.database.repositories.articles.ArticlesRepository
-import com.example.koinmvvm.listeners.FavouriteArticleListeners
+import com.example.koinmvvm.listeners.NewsArticleListeners
 import com.example.koinmvvm.models.articles.Articles
 import com.example.koinmvvm.ui.newsPage.bookmarkedNewsPage.BookmarkedNewsPageActivity
 import com.example.koinmvvm.utils.dateTimeFormatUtils.convertDateTimeLocalToUTC
@@ -29,7 +29,7 @@ class NewsPageViewModel constructor(
     private val topHeadLinesRepository: TopHeadLinesRepository,
     private val articlesRepository: ArticlesRepository
 ) : BaseViewModel(application),
-    OnAnimPerformCompletedListener, FavouriteArticleListeners {
+    OnAnimPerformCompletedListener, NewsArticleListeners {
 
     lateinit var newsPageActivity: NewsPageActivity
 
@@ -96,7 +96,7 @@ class NewsPageViewModel constructor(
     private fun setupPageAdapter() {
         newsPageAdapter = NewsPageAdapter(newsPageActivity)
         newsPageAdapter.articleList = articleList
-        newsPageAdapter.favouriteArticleListeners = this@NewsPageViewModel
+        newsPageAdapter.newsArticleListeners = this@NewsPageViewModel
         newsPageAdapter.articlesRepository = articlesRepository
 
         newsPageActivity.getViewModelDataBinding().apply {
@@ -170,6 +170,12 @@ class NewsPageViewModel constructor(
         }
 
         newsPageAdapter.notifyDataSetChanged()
+    }
+
+    override fun showNextArticleStory(position: Int) {
+        newsPageActivity.getViewModelDataBinding().apply {
+            viewPagerLayout.currentItem = position
+        }
     }
 
     fun onClickBookmarkedNews(view: View) {

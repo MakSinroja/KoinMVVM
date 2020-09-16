@@ -12,7 +12,7 @@ import com.example.koinmvvm.constants.URL
 import com.example.koinmvvm.database.entities.articles.ArticlesEntity
 import com.example.koinmvvm.databinding.AdapterNewsPageBinding
 import com.example.koinmvvm.extensions.loadArticleImage
-import com.example.koinmvvm.listeners.FavouriteArticleListeners
+import com.example.koinmvvm.listeners.NewsArticleListeners
 import com.example.koinmvvm.ui.newsPage.newsWebView.NewsWebViewActivity
 import com.google.android.material.card.MaterialCardView
 import org.jetbrains.anko.startActivity
@@ -21,7 +21,7 @@ class BookmarkedNewsPageAdapter(private val context: Context) : PagerAdapter() {
 
     var articleList = mutableListOf<ArticlesEntity>()
 
-    var favouriteArticleListeners: FavouriteArticleListeners? = null
+    var newsArticleListeners: NewsArticleListeners? = null
 
     override fun getCount(): Int = articleList.size
 
@@ -76,8 +76,21 @@ class BookmarkedNewsPageAdapter(private val context: Context) : PagerAdapter() {
             bookmarkImage.setOnClickListener(null)
 
             bookmarkImage.setOnClickListener {
-                favouriteArticleListeners?.let { listener ->
+                newsArticleListeners?.let { listener ->
                     listener.isFavouriteArticle(null, article, true)
+                }
+            }
+
+            if ((articleList.size - 1) == position) {
+                nextArticleLayout.visibility = View.GONE
+            } else {
+                nextArticleLayout.visibility = View.VISIBLE
+                nextArticleTitle.text = articleList[position + 1].title
+
+                nextArticleLayout.setOnClickListener {
+                    newsArticleListeners?.let { listener ->
+                        listener.showNextArticleStory(position + 1)
+                    }
                 }
             }
         }

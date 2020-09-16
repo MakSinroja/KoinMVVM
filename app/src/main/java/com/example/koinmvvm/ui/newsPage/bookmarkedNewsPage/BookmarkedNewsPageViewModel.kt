@@ -9,7 +9,7 @@ import com.example.koinmvvm.constants.SOMETHING_WENT_WRONG_ERROR
 import com.example.koinmvvm.database.entities.Watcher
 import com.example.koinmvvm.database.entities.articles.ArticlesEntity
 import com.example.koinmvvm.database.repositories.articles.ArticlesRepository
-import com.example.koinmvvm.listeners.FavouriteArticleListeners
+import com.example.koinmvvm.listeners.NewsArticleListeners
 import com.example.koinmvvm.models.articles.Articles
 import com.example.koinmvvm.utils.dateTimeFormatUtils.convertDateTimeLocalToUTC
 import java.util.*
@@ -17,7 +17,7 @@ import java.util.*
 class BookmarkedNewsPageViewModel constructor(
     application: Application,
     private val articlesRepository: ArticlesRepository
-) : BaseViewModel(application), FavouriteArticleListeners {
+) : BaseViewModel(application), NewsArticleListeners {
 
     lateinit var bookmarkedNewsPageActivity: BookmarkedNewsPageActivity
 
@@ -54,7 +54,7 @@ class BookmarkedNewsPageViewModel constructor(
     private fun setupPageAdapter() {
         bookmarkedNewsPageAdapter = BookmarkedNewsPageAdapter(bookmarkedNewsPageActivity)
         bookmarkedNewsPageAdapter.articleList = articleList
-        bookmarkedNewsPageAdapter.favouriteArticleListeners = this@BookmarkedNewsPageViewModel
+        bookmarkedNewsPageAdapter.newsArticleListeners = this@BookmarkedNewsPageViewModel
 
         bookmarkedNewsPageActivity.getViewModelDataBinding().apply {
             viewPagerLayout.adapter = bookmarkedNewsPageAdapter
@@ -76,6 +76,12 @@ class BookmarkedNewsPageViewModel constructor(
                 else failureMessage.value = SOMETHING_WENT_WRONG_ERROR
             }
             bookmarkedNewsPageAdapter.notifyDataSetChanged()
+        }
+    }
+
+    override fun showNextArticleStory(position: Int) {
+        bookmarkedNewsPageActivity.getViewModelDataBinding().apply {
+            viewPagerLayout.currentItem = position
         }
     }
 }
