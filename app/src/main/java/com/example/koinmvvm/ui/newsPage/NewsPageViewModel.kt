@@ -33,20 +33,16 @@ class NewsPageViewModel constructor(
 
     lateinit var newsPageActivity: NewsPageActivity
 
-    lateinit var loadingProgressBarLayout: SmileyProgressView
+    private lateinit var loadingProgressBarLayout: SmileyProgressView
 
-    var isDataAvailable = MutableLiveData<Boolean>()
+    var isDataAvailable = MutableLiveData<Boolean>().apply { value = true }
 
     var articleList = mutableListOf<Articles>()
 
-    lateinit var newsPageAdapter: NewsPageAdapter
+    private lateinit var newsPageAdapter: NewsPageAdapter
 
     var page: Int = 1
     var totalArticles: Int = 0
-
-    init {
-        isDataAvailable.value = true
-    }
 
     override fun initialization() {
         newsPageActivity.getViewModelDataBinding().apply {
@@ -116,10 +112,11 @@ class NewsPageViewModel constructor(
     }
 
     private fun setupPageAdapter() {
-        newsPageAdapter = NewsPageAdapter(newsPageActivity)
-        newsPageAdapter.articleList = articleList
-        newsPageAdapter.newsArticleListeners = this@NewsPageViewModel
-        newsPageAdapter.articlesRepository = articlesRepository
+        newsPageAdapter = NewsPageAdapter(newsPageActivity).apply {
+            articleList = this@NewsPageViewModel.articleList
+            newsArticleListeners = this@NewsPageViewModel
+            articlesRepository = this@NewsPageViewModel.articlesRepository
+        }
 
         newsPageActivity.getViewModelDataBinding().apply {
             viewPagerLayout.adapter = newsPageAdapter
